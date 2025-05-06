@@ -22,7 +22,6 @@ An extension for the PowerToys Command Palette that lets you quickly search, gen
 
    ```sh
    git clone https://github.com/Pimiovdb/CMDPAL-Keepass-extension.git
-   cd PasswordSearch
    ```
 2. Open `PasswordSearch.sln` in Visual Studio 2022 or later.
 3. Restore NuGet packages and build the solution.
