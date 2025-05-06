@@ -19,10 +19,6 @@ An extension for the PowerToys Command Palette that lets you quickly search, gen
 ## Installation
 
 1. Clone this repository:
-
-   ```sh
-   git clone https://github.com/Pimiovdb/CMDPAL-Keepass-extension.git
-   ```
 2. Open `PasswordSearch.sln` in Visual Studio 2022 or later.
 3. Restore NuGet packages and build the solution.
 4. Package the extension as AppX or MSIX, then install it.
