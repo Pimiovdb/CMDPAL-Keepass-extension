@@ -30,7 +30,7 @@ An extension for the PowerToys Command Palette that lets you quickly search, gen
 
 ## Usage
 
-* **Open the Command Palette**: press **Win + Shift + P**
+* **Open the Command Palette**
 * **Configure KeePass DB**: type `Configure KeePass DB` to set your vault path and master password.
 * **Search KeePass**: type `Search KeePass` followed by your query to find entries.
 
