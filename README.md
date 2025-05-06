@@ -26,7 +26,6 @@ An extension for the PowerToys Command Palette that lets you quickly search, gen
 2. Open `PasswordSearch.sln` in Visual Studio 2022 or later.
 3. Restore NuGet packages and build the solution.
 4. Package the extension as AppX or MSIX, then install it.
-5. Restart PowerToys and enable the Command Palette extension under *Settings > Experimental > Command Palette*.
 
 ## Usage
 
