@@ -12,7 +12,7 @@ An extension for the PowerToys Command Palette that lets you quickly search, gen
 ## Requirements
 
 * Windows 10 or higher
-* PowerToys installed (v0.##+)
+* PowerToys installed (v0.90+)
 * .NET 6 SDK
 * KeePassLib (via the NuGet package `KeePassLib`)
 
