@@ -35,7 +35,7 @@ An extension for the PowerToys Command Palette that lets you quickly search, gen
 * **Search KeePass**: type `Search KeePass` followed by your query to find entries.
 
   * Press **Enter** to copy the password.
-  * Press **Ctrl+M** (or right-click) for additional options: copy username, open URL, or open entry in KeePass.
+  * Press **Ctrl+Enter** (or right-click) for additional options: copy username, open URL, or open entry in KeePass.
 * **Generate Password**: type `Generate Password`, then either select a suggested length or type a custom number to generate and copy a random password of that length.
 
 ## Configuration
