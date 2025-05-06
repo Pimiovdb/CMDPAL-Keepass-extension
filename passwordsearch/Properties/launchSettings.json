@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "PasswordSearch (Package)": {
+      "commandName": "MsixPackage",
+      "doNotLaunchApp": true
+    },
+    "PasswordSearch (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
