@@ -1,5 +1,4 @@
-﻿// File: SearchKeePassPage.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,7 +35,6 @@ namespace PasswordSearch.Pages
 
         public override void UpdateSearchText(string oldSearch, string newSearch)
         {
-            // Open database bij eerste zoekactie met de actuele instellingen
             if (_database == null)
             {
                 string dbPath = _dbPathSetting.Value;
@@ -71,7 +69,6 @@ namespace PasswordSearch.Pages
                 }
             }
 
-            // Zoek door je database
             IsLoading = true;
             Task.Run(() =>
             {
@@ -87,25 +84,21 @@ namespace PasswordSearch.Pages
                     var title = entry.Strings.ReadSafe("Title");
                     var user = entry.Strings.ReadSafe("UserName");
                     var pwd = entry.Strings.ReadSafe("Password");
-                    var entryUrl = entry.Strings.ReadSafe("URL"); // URL-veld in je KeePass-entry
+                    var entryUrl = entry.Strings.ReadSafe("URL");
 
                     var copyPassword = new CopyTextCommand(pwd)
                     {
                         Name = "Copy Password"
                     };
 
-
-                    // Hoofditem: kopieert wachtwoord bij selectie
                     var listItem = new ListItem(copyPassword)
                     {
                         Title = title,
                         Subtitle = string.IsNullOrEmpty(user) ? null : $"User: {user}"
                     };
 
-                    // Extra context-commando's (Ctrl+M / rechtermuisklik)
                     listItem.MoreCommands = new IContextItem[]
                     {
-                        // Kopieer de gebruikersnaam
                         new CommandContextItem(new CopyTextCommand(user)
                         {
                             Name = "Copy username"
@@ -114,7 +107,6 @@ namespace PasswordSearch.Pages
                             Title = "Copy username"
                         },
 
-                        // Open de URL in de standaardbrowser (als aanwezig)
                         new CommandContextItem(new OpenUrlCommand(entryUrl))
                         {
                             Title = "Open URL"
