@@ -7,7 +7,7 @@ using Microsoft.CommandPalette.Extensions.Toolkit;
 
 namespace GeneratePasswordExtension.Pages
 {
-    public sealed class GeneratePasswordPage : ContentPage
+    public sealed partial class GeneratePasswordPage : ContentPage
     {
         private readonly GeneratePasswordForm _form = new();
 
@@ -22,7 +22,7 @@ namespace GeneratePasswordExtension.Pages
             => new IContent[] { _form };
     }
 
-    internal sealed class GeneratePasswordForm : FormContent
+    internal sealed partial class GeneratePasswordForm : FormContent
     {
         public GeneratePasswordForm()
         {
@@ -46,6 +46,7 @@ namespace GeneratePasswordExtension.Pages
                   ""style"": ""expanded"",
                   ""isMultiSelect"": true,
                   ""wrap"": false,
+                  ""value"": ""upper,lower,digits,symbold"",
                   ""choices"": [
                     { ""title"": ""Hoofdletters (A-Z)"", ""value"": ""upper"" },
                     { ""title"": ""Kleine letters (a-z)"", ""value"": ""lower"" },
@@ -60,10 +61,9 @@ namespace GeneratePasswordExtension.Pages
                   ""title"": ""Genereer""
                 }
               ]
-            }
-                        ";
+            }";
             DataJson = "{}";
-                    }
+        }
 
         public override CommandResult SubmitForm(string payload)
         {

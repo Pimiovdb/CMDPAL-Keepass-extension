@@ -4,7 +4,7 @@ using Microsoft.CommandPalette.Extensions.Toolkit;
 
 namespace PasswordSearch.Commands
 {
-    public class OpenInKeePass : InvokableCommand
+    public partial class OpenInKeePass : InvokableCommand
     {
         private readonly string _dbPath;
 
