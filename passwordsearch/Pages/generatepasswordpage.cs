@@ -40,7 +40,6 @@ namespace GeneratePasswordExtension.Pages
                         "isRequired": true,
                         "errorMessage": "Enter a Number Between 6 and 64",
                         "value": 12,
-                        "min": 6,
                         "max": 64
                     },
                     {
@@ -89,12 +88,17 @@ namespace GeneratePasswordExtension.Pages
             if (inputs == null)
                 return CommandResult.GoHome();
 
-            if (!int.TryParse(inputs["passwordLength"]?.GetValue<string>(), out int length) || length <= 0)
-                return CommandResult.ShowToast(new ToastArgs
+            if (!int.TryParse(inputs["passwordLength"]?.GetValue<string>(), out int length) || length <= 6)
+            {
+                var errorMessage = new StatusMessage
                 {
-                    Message = "Invalid length, please enter a number greater than 0.",
-                    Result = CommandResult.KeepOpen()
-                });
+                    Message = "Invalid Length, Enter a Number Between 6 and 64",
+                    State = MessageState.Error
+                };
+
+                ExtensionHost.ShowStatus(errorMessage, StatusContext.Page);
+                return CommandResult.KeepOpen();
+            }
 
             string? selected = inputs["characterTypes"]?.GetValue<string>();
             var types = selected?.Split(',', StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
@@ -104,27 +108,28 @@ namespace GeneratePasswordExtension.Pages
             bool useSymbols = Array.Exists(types, t => t == "symbols");
 
             if (!useUpper && !useLower && !useDigits && !useSymbols)
-                return CommandResult.ShowToast(new ToastArgs
+            {
+                var errorMessage = new StatusMessage
                 {
                     Message = "Select at least one character type.",
-                    Result = CommandResult.KeepOpen()
-                });
+                    State = MessageState.Error
+                };
+
+                ExtensionHost.ShowStatus(errorMessage, StatusContext.Page);
+                return CommandResult.KeepOpen();
+            }
 
             var password = Generate(length, useUpper, useLower, useDigits, useSymbols);
             ClipboardHelper.SetText(password);
 
             var status = new StatusMessage
             {
-                Message = $"🔒 Password generated: {password}",
+                Message = $"🔒 Password generated: {password} (Copied to Clipboard)",
                 State = MessageState.Success
             };
             ExtensionHost.ShowStatus(status, StatusContext.Page);
 
-            return CommandResult.ShowToast(new ToastArgs
-            {
-                Message = $"Generated password: {password} (copied to clipboard)",
-                Result = CommandResult.KeepOpen()
-            });
+            return CommandResult.KeepOpen();
         }
 
         private static string Generate(int length, bool useUpper, bool useLower, bool useDigits, bool useSymbols)
