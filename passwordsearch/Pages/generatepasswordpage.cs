@@ -26,45 +26,61 @@ namespace GeneratePasswordExtension.Pages
     {
         public GeneratePasswordForm()
         {
-            TemplateJson = @"
+            TemplateJson = $$"""
             {
-              ""type"": ""AdaptiveCard"",
-              ""version"": ""1.6"",
-              ""body"": [
-                {
-                  ""type"": ""Input.Number"",
-                  ""id"": ""passwordLength"",
-                  ""label"": ""Password Length"",
-                  ""style"": ""text"",
-                  ""isRequired"": true,
-                  ""errorMessage"": ""Enter a Number Between 6 and 64"",
-                  ""value"": '12',
-                  ""min"": '6',
-                  ""max"": '64'
-                },
-                {
-                  ""type"": ""Input.ChoiceSet"",
-                  ""id"": ""characterTypes"",
-                  ""style"": ""expanded"",
-                  ""isMultiSelect"": true,
-                  ""wrap"": false,
-                  ""value"": ""upper,lower,digits,symbold"",
-                  ""choices"": [
-                    { ""title"": ""Hoofdletters (A-Z)"", ""value"": ""upper"" },
-                    { ""title"": ""Kleine letters (a-z)"", ""value"": ""lower"" },
-                    { ""title"": ""Cijfers (0-9)"", ""value"": ""digits"" },
-                    { ""title"": ""Symbolen (!@#$...)"", ""value"": ""symbols"" }
-                  ]
-                }
-              ],
-              ""actions"": [
-                {
-                  ""type"": ""Action.Submit"",
-                  ""title"": ""Generate""
-                }
-              ]
-            }";
-            DataJson = "{}";
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                    {
+                        "type": "Input.Number",
+                        "id": "passwordLength",
+                        "label": "Password Length",
+                        "style": "text",
+                        "isRequired": true,
+                        "errorMessage": "Enter a Number Between 6 and 64",
+                        "value": 12,
+                        "min": 6,
+                        "max": 64
+                    },
+                    {
+                        "type": "Input.ChoiceSet",
+                        "id": "characterTypes",
+                        "style": "expanded",
+                        "isMultiSelect": true,
+                        "wrap": false,
+                        "value": "upper,lower,digits,symbold",
+                        "choices": [
+                            {
+                                "title": "Hoofdletters (A-Z)",
+                                "value": "upper"
+                            },
+                            {
+                                "title": "Kleine letters (a-z)",
+                                "value": "lower"
+                            },
+                            {
+                                "title": "Cijfers (0-9)",
+                                "value": "digits"
+                            },
+                            {
+                                "title": "Symbolen (!@#$...)",
+                                "value": "symbols"
+                            }
+                        ]
+                    }
+                ],
+                "actions": [
+                    {
+                        "type": "Action.Submit",
+                        "title": "Generate"
+                    }
+                ]
+            }
+            """;
+        DataJson = $$"""
+                {}
+                """;
         }
 
         public override CommandResult SubmitForm(string payload)
