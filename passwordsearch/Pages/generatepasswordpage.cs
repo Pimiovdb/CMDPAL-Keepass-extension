@@ -29,16 +29,18 @@ namespace GeneratePasswordExtension.Pages
             TemplateJson = @"
             {
               ""type"": ""AdaptiveCard"",
-              ""version"": ""1.2"",
+              ""version"": ""1.6"",
               ""body"": [
                 {
                   ""type"": ""Input.Number"",
                   ""id"": ""passwordLength"",
-                  ""placeholder"": ""Bijv. 12"",
                   ""label"": ""Password Length"",
                   ""style"": ""text"",
                   ""isRequired"": true,
-                  ""errorMessage"": ""Enter a Number""
+                  ""errorMessage"": ""Enter a Number Between 6 and 64"",
+                  ""value"": '12',
+                  ""min"": '6',
+                  ""max"": '64'
                 },
                 {
                   ""type"": ""Input.ChoiceSet"",

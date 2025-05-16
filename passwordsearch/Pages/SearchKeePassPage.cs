@@ -124,7 +124,8 @@ namespace PasswordSearch.Pages
                 {
                     _items.Add(new ListItem(new NoOpCommand())
                     {
-                        Title = "No entries found"
+                        Title = "No entries found",
+                        Icon = new IconInfo("\uE783")
                     });
                 }
 
