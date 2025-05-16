@@ -60,7 +60,7 @@ namespace GeneratePasswordExtension.Pages
               ""actions"": [
                 {
                   ""type"": ""Action.Submit"",
-                  ""title"": ""Genereer""
+                  ""title"": ""Generate""
                 }
               ]
             }";
@@ -76,11 +76,11 @@ namespace GeneratePasswordExtension.Pages
             if (!int.TryParse(inputs["passwordLength"]?.GetValue<string>(), out int length) || length <= 0)
                 return CommandResult.ShowToast(new ToastArgs
                 {
-                    Message = "Ongeldige lengte, voer een getal groter dan 0 in.",
+                    Message = "Invalid length, please enter a number greater than 0.",
                     Result = CommandResult.KeepOpen()
                 });
 
-            string selected = inputs["characterTypes"]?.GetValue<string>();
+            string? selected = inputs["characterTypes"]?.GetValue<string>();
             var types = selected?.Split(',', StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
             bool useUpper = Array.Exists(types, t => t == "upper");
             bool useLower = Array.Exists(types, t => t == "lower");
@@ -90,16 +90,23 @@ namespace GeneratePasswordExtension.Pages
             if (!useUpper && !useLower && !useDigits && !useSymbols)
                 return CommandResult.ShowToast(new ToastArgs
                 {
-                    Message = "Selecteer ten minste één tekenreeks.",
+                    Message = "Select at least one character type.",
                     Result = CommandResult.KeepOpen()
                 });
 
             var password = Generate(length, useUpper, useLower, useDigits, useSymbols);
             ClipboardHelper.SetText(password);
 
+            var status = new StatusMessage
+            {
+                Message = $"🔒 Password generated: {password}",
+                State = MessageState.Success
+            };
+            ExtensionHost.ShowStatus(status, StatusContext.Page);
+
             return CommandResult.ShowToast(new ToastArgs
             {
-                Message = $"Gegenereerd wachtwoord: {password} (gekopieerd naar klembord)",
+                Message = $"Generated password: {password} (copied to clipboard)",
                 Result = CommandResult.KeepOpen()
             });
         }
