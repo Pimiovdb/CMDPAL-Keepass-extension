@@ -17,7 +17,7 @@ public partial class PasswordSearchCommandsProvider : CommandProvider
     public PasswordSearchCommandsProvider()
     {
         DisplayName = "Keepass Password Search";
-        Icon = new IconInfo("\uE721");
+        Icon = new IconInfo("\uE785");
 
         _settings = new Settings();
         _dbPathSetting = new TextSetting("DatabasePath", @"C:\Users\You\Documents\vault.kdbx");
@@ -33,15 +33,14 @@ public partial class PasswordSearchCommandsProvider : CommandProvider
     {
         return new ICommandItem[]
         {
-            new CommandItem(_settings.SettingsPage) { Title = "Configure KeePass DB" },
+            new CommandItem(_settings.SettingsPage) 
+            { 
+                Title = "Configure KeePass DB" 
+            },
             new CommandItem(_searchPage){
                 Title = "Search KeePass",
                 Icon = new IconInfo("\uE721")
             },
-            //new CommandItem(new GeneratePasswordCommand(16)){
-            //    Title = "Generate Password Command",
-            //    Icon  = new IconInfo("\uEAAE")
-            //},
             new CommandItem(_generatePage){ 
                 Title = "Generate Password",
                 Icon = new IconInfo("\uEAAE")
