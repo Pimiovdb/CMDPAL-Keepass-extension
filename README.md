@@ -6,22 +6,18 @@ An extension for the PowerToys Command Palette that lets you quickly search, gen
 
 * **Configure KeePass DB**: set your database path and master password via a settings page.
 * **Search KeePass**: perform a case-insensitive title search in your KeePass vault and copy passwords or usernames to the clipboard.
-* **Context-menu Actions**: in addition to copying, open entries directly in the KeePass application or launch associated URLs in your browser.
 * **Generate Password**: choose a custom length at runtime (e.g., type `16` for a 16-character password or pick from default suggestions) to generate a cryptographically secure password and copy it to the clipboard.
 
 ## Requirements
 
 * Windows 10 or higher
 * PowerToys installed (v0.90+)
-* .NET 6 SDK
-* KeePassLib (via the NuGet package `KeePassLib`)
 
 ## Installation
-
 1. Clone this repository:
 2. Open `PasswordSearch.sln` in Visual Studio 2022 or later.
 3. Restore NuGet packages and build the solution.
-4. Package the extension as AppX or MSIX, then install it.
+4. Package the extension as AppX or MSIX, then install it. (dont forget cert)
 
 ## Usage
 
@@ -44,6 +40,3 @@ These settings are available under **PowerToys > Commands > Password Search**.
 
 Feel free to open issues or submit pull requests. Fork the repository, make your changes, and submit a PR.
 
-## License
-
-MIT License ©&#x20;
